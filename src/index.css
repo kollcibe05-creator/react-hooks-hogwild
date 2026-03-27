@@ -150,3 +150,16 @@ ul {
     transform: rotate(360deg);
   }
 }
+button{
+  margin-left: 20px;
+  background-color: magenta;
+}
+form{
+  display: block;
+}
+.hidden{
+  display: none;
+}
+.visible{
+  display: block;
+}
