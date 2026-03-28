@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-function Form ({addPig, classState}) {
-    const cssClass = classState ? "hidden": "visible"
+function Form ({addPig}) {
     const [formData, setFormData] = useState({
         name: "", 
         specialty: "",
@@ -9,21 +8,10 @@ function Form ({addPig, classState}) {
         image: ""
     })
     function handleChange(e) {
-        if (e.target.id === 'highest medal achieved') {
-            setFormData({
-                "highest medal achieved": e.target.value
-            })
-        }
+        const {id, value} = e.target
         setFormData({
             ...formData, 
-            [e.target.id]: e.target.value
-        })
-        setFormData({
-            name: "", 
-            specialty: "",
-            weight: 0.0,
-            "highest medal achieved": "",
-            image: ""
+            [id]: id === "weight" ? parseFloat(value) : value
         })
     }
     function handleSubmit(e) {
@@ -31,7 +19,7 @@ function Form ({addPig, classState}) {
         addPig(formData)
     }
     return (
-        <form  className={cssClass} onSubmit={e => handleSubmit(e)}>
+        <form onSubmit={e => handleSubmit(e)}>
             <label>Name<input id="name" value={formData.name}onChange={e => handleChange(e)}></input></label>
             <label>Specialty<input id="specialty"value={formData.specialty}onChange={e => handleChange(e)}></input></label>
             <label>Weight<input id="weight" value={formData.weight}onChange={e => handleChange(e)}></input></label>

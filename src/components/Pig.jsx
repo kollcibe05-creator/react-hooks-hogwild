@@ -8,11 +8,13 @@ function Pig({pig, hideSome}) {
         <article className="pigTile">
                 <h1>{pig.name}</h1>
                 <img src={pig.image} alt={pig.name} />
-                {/* need to be hidden */}
+                {/* needs to be hidden */}
+                <div className="specialHidden">
                 <h2>{pig.specialty}</h2>
                 <h3>{pig.weight}</h3>
                 <h2>{pig["highest medal achieved"]}</h2>
                 <button onClick={() => handleHide(pig.name)}>HIDE</button>
+                </div>
         </article>
     )
 }

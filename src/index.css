@@ -124,9 +124,12 @@ ul {
   height: 500px;
 }
 
-.pigTile:hover {
+.pigTile:hover .specialHidden{
   transform: scale(1.05);
+  display: block;
+  transition: all 0.3s;
 }
+
 
 
 .App-logo {
@@ -162,4 +165,7 @@ form{
 }
 .visible{
   display: block;
+}
+.specialHidden{
+  display: none;
 }

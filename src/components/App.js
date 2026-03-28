@@ -7,8 +7,7 @@ import hogs from "../porkers_data";
 
 function App() {
 	const [pigs, setPigs] = useState(hogs)
-
-	const [formState, setFormState] = useState(true)
+	const [showForm, setShowForm] = useState(false)
 	function handleGreasing(state) {
 		if (state === true) {
 			const updatedArr = pigs.filter( pig => pig.greased === true)
@@ -24,7 +23,6 @@ function App() {
         }
     }
 	function sortFoo(option) {
-		
 			const updatedArr = [...pigs].sort((a, b) => {
 				if (option === "weight") return b.weight - a.weight
 				if(option === "name") return a.name.localeCompare(b.name)
@@ -35,13 +33,11 @@ function App() {
 	function addPig(form) {
 		setPigs([...pigs, form])
 	}
-	function receiveState(state) {
-		setFormState(state)
-	}
+	const  toggleForm = () => setShowForm(!showForm)
 	return (
 		<div className="App">
-			<Nav handleGreasing={handleGreasing} sortFoo={sortFoo} pickState={receiveState}/>
-			<Form addPig={addPig} classState={formState}/>
+			<Nav handleGreasing={handleGreasing} sortFoo={sortFoo} toggleForm={toggleForm} isFormVisible={showForm}/>
+			{showForm && <Form addPig={addPig}/>} {/*Short-Circuit Evaluation ~ React's way of rendering components conditionally without needing complex if/else blocks inside JSX */}
 			<PigsContainer pigs={pigs} hideSome={hideSome}/>
 		</div>
 	);

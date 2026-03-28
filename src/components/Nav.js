@@ -1,27 +1,17 @@
 import React, { useState } from "react";
 import piggy from "../assets/porco.png";
 
-const Nav = ({handleGreasing, sortFoo, pickState}) => {
+const Nav = ({handleGreasing, sortFoo, toggleForm, isFormVisible}) => {
 	const [sort, setSort] = useState(false)
 	const [sortValue, setSortValue] = useState("all")
-	const [hideForm, setHideForm] = useState(true)
 	function handleChange(e){
 		setSortValue(e.target.value)
-		// updateSortFoo()
 		sortFoo(e.target.value)
 	}
-	// console.log(sortValue)
-	// function updateSortFoo() {
-	// 		sortFoo(sortValue)
-	// }
 	function handleSort() {
-		const nextSort = !nextSort
+		const nextSort = !sort
 		setSort(nextSort)
 		handleGreasing(nextSort)		
-	}
-	function formStance() {
-		setHideForm(!hideForm)
-		pickState(hideForm)
 	}
 
 	return (
@@ -39,7 +29,7 @@ const Nav = ({handleGreasing, sortFoo, pickState}) => {
 				<option value="weight">Weight</option>
 				<option value="name">Name</option>
 			</select>
-			<button onClick={formStance}>{hideForm ? "Cancel":"Add A Pig" }</button>
+			<button onClick={toggleForm}>{isFormVisible ? "Cancel":"Add A Pig" }</button>
 		</div>
 	);
 };
